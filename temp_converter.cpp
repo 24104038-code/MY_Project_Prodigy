@@ -1,0 +1,49 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+int main() {
+    double temp;
+    char unit;
+
+    cout << "Enter temperature value: ";
+    cin >> temp;
+    cout << "Enter the unit (C for Celsius, F for Fahrenheit, K for Kelvin): ";
+    cin >> unit;
+
+    unit = toupper(unit);  // Convert to uppercase for simplicity
+
+    cout << fixed << setprecision(2); // Format output to 2 decimal places
+
+    switch (unit) {
+        case 'C': {
+            double f = (temp * 9.0 / 5.0) + 32.0;
+            double k = temp + 273.15;
+            cout << temp << " °C = " << f << " °F" << endl;
+            cout << temp << " °C = " << k << " K" << endl;
+            break;
+        }
+        case 'F': {
+            double c = (temp - 32.0) * 5.0 / 9.0;
+            double k = c + 273.15;
+            cout << temp << " °F = " << c << " °C" << endl;
+            cout << temp << " °F = " << k << " K" << endl;
+            break;
+        }
+        case 'K': {
+            if (temp < 0) {
+                cout << "Invalid temperature! Kelvin cannot be negative." << endl;
+            } else {
+                double c = temp - 273.15;
+                double f = (c * 9.0 / 5.0) + 32.0;
+                cout << temp << " K = " << c << " °C" << endl;
+                cout << temp << " K = " << f << " °F" << endl;
+            }
+            break;
+        }
+        default:
+            cout << "Invalid unit entered!" << endl;
+    }
+
+    return 0;
+}
